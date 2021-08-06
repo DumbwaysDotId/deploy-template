@@ -1,1 +1,1 @@
-# Deploy backend to heroku
+# Deploy frontend to netlify
