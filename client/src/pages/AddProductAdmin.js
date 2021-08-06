@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { useHistory } from "react-router";
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 
-import NavbarAdmin from "../components/NavbarAdmin";
+import NavbarAdmin from '../components/NavbarAdmin';
 
 // Import useQuery & useMutation
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation } from 'react-query';
 
 // Import API config
-import { API } from "../config/api";
+import { API } from '../config/api';
 
 export default function AddProductAdmin() {
-  const title = "Product admin";
-  document.title = "DumbMerch | " + title;
+  const title = 'Product admin';
+  document.title = 'DumbMerch | ' + title;
 
   let history = useHistory();
   let api = API();
@@ -21,16 +21,16 @@ export default function AddProductAdmin() {
   const [categoryId, setCategoryId] = useState([]); //Save the selected category id
   const [preview, setPreview] = useState(null); //For image preview
   const [form, setForm] = useState({
-    image: "",
-    name: "",
-    desc: "",
-    price: "",
-    qty: "",
+    image: '',
+    name: '',
+    desc: '',
+    price: '',
+    qty: '',
   }); //Store product data
 
   // Fetching category data
-  let { data: categories, refetch } = useQuery("categoriesCache", async () => {
-    const response = await api.get("/categories");
+  let { data: categories, refetch } = useQuery('categoriesCache', async () => {
+    const response = await api.get('/categories');
     return response.data;
   });
 
@@ -56,11 +56,11 @@ export default function AddProductAdmin() {
     setForm({
       ...form,
       [e.target.name]:
-        e.target.type === "file" ? e.target.files : e.target.value,
+        e.target.type === 'file' ? e.target.files : e.target.value,
     });
 
     // Create image url for preview
-    if (e.target.type === "file") {
+    if (e.target.type === 'file') {
       let url = URL.createObjectURL(e.target.files[0]);
       setPreview(url);
     }
@@ -72,26 +72,28 @@ export default function AddProductAdmin() {
 
       // Store data with FormData as object
       const formData = new FormData();
-      formData.set("image", form?.image[0], form?.image[0]?.name);
-      formData.set("name", form.name);
-      formData.set("desc", form.desc);
-      formData.set("price", form.price);
-      formData.set("qty", form.qty);
-      formData.set("categoryId", categoryId);
+      formData.set('name', form.name);
+      formData.set('desc', form.desc);
+      formData.set('price', form.price);
+      formData.set('qty', form.qty);
+      formData.set('categoryId', categoryId);
+      formData.set('image', form?.image[0], form?.image[0]?.name);
 
       // Configuration
       const config = {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Authorization: "Basic " + localStorage.token,
+          Authorization: 'Basic ' + localStorage.token,
         },
         body: formData,
       };
 
       // Insert product data
-      const response = await api.post("/product", config);
+      const response = await api.post('/product', config);
 
-      history.push("/product-admin");
+      if (response) {
+        history.push('/product-admin');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -112,9 +114,9 @@ export default function AddProductAdmin() {
                   <img
                     src={preview}
                     style={{
-                      maxWidth: "150px",
-                      maxHeight: "150px",
-                      objectFit: "cover",
+                      maxWidth: '150px',
+                      maxHeight: '150px',
+                      objectFit: 'cover',
                     }}
                   />
                 </div>
@@ -141,7 +143,7 @@ export default function AddProductAdmin() {
                 name="desc"
                 onChange={handleChange}
                 className="input-edit-category mt-4"
-                style={{ height: "130px" }}
+                style={{ height: '130px' }}
               ></textarea>
               <input
                 type="number"
@@ -160,7 +162,7 @@ export default function AddProductAdmin() {
               <div className="card-form-input mt-4 px-2 py-1 pb-2">
                 <div
                   className="text-secondary mb-1"
-                  style={{ fontSize: "15px" }}
+                  style={{ fontSize: '15px' }}
                 >
                   Category
                 </div>
@@ -170,7 +172,7 @@ export default function AddProductAdmin() {
                       type="checkbox"
                       value={item.id}
                       onClick={handleChangeCategoryId}
-                    />{" "}
+                    />{' '}
                     {item.name}
                   </label>
                 ))}
