@@ -23,7 +23,7 @@ const io = new Server(server, {
 // import socket function and call with parameter io
 require('./src/socket')(io);
 
-const port = process.env.PORT || 5000;
+const port = 5000;
 
 app.use(express.json());
 app.use(cors());
