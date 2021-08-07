@@ -1,4 +1,6 @@
 const { product, user, category, productCategory } = require('../../models');
+
+// Get cloudinary from utils
 const cloudinary = require('../utils/cloudinary');
 
 exports.getProducts = async (req, res) => {
