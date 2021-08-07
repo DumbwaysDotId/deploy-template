@@ -1,5 +1,6 @@
 export const API = () => {
-  const baseUrl = 'http://localhost:5000/api/v1';
+  const baseUrl =
+    process.env.BASE_URL || 'https://deploy-backend-demo.herokuapp.com/api/v1';
 
   const executeAPI = async (endpoint, config) => {
     const response = await fetch(baseUrl + endpoint, config);
