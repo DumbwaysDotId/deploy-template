@@ -1,7 +1,6 @@
 const { product, user, category, productCategory } = require('../../models');
 
-// Get cloudinary from utils
-const cloudinary = require('../utils/cloudinary');
+// Get cloudinary from utils here ...
 
 exports.getProducts = async (req, res) => {
   try {
@@ -109,17 +108,13 @@ exports.addProduct = async (req, res) => {
     let { categoryId } = req.body;
     categoryId = categoryId.split(',');
 
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      folder: 'dumbmerch_file',
-      use_filename: true,
-      unique_filename: false,
-    });
+    // Handle uploader to cloudinary here ...
 
     const data = {
       name: req.body.name,
       desc: req.body.desc,
       price: req.body.price,
-      image: result.public_id,
+      image: 'image name from cloudinary (result variable) here ...',
       qty: req.body.qty,
       idUser: req.user.id,
     };
