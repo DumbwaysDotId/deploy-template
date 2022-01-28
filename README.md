@@ -56,4 +56,6 @@
 
 * Go to `Settings`, scroll down to `Config Vars`, Add the `config vars` from dotenv file
 
+  ![image](https://raw.githubusercontent.com/DumbwaysDotId/deploy-template/1.Deploy-backend-to-heroku/img.png)
+
 * Then to ensure our Backend is deployed, we can click `Open App`
