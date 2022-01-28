@@ -14,7 +14,7 @@
 
 * Scroll down, modify Build command to `CI= npm run build`. Click `Show advanced`
 
-* Click `New variable` for add `environment variables`
+* Click `New variable` for add `environment variables`.  Like: `REACT_APP_SERVER_URL`
 
 * Click `Deploy site`
 
